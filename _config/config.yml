@@ -1,0 +1,7 @@
+---
+name: bcryptencryptor
+---
+PasswordEncryptor:
+  encryptors:
+    bcrypt:
+      PasswordEncryptor_bcrypt:

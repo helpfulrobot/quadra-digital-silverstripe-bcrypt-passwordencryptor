@@ -1,0 +1,25 @@
+{
+  "name": "quadra-digital/silverstripe-bcrypt-passwordencryptor",
+  "description": "A custom built password encryptor for Silverstripe that uses php's password_hash and bcrypt with customisable encryption cost",
+  "keywords": [
+    "silverstripe",
+    "bcrypt",
+    "password",
+    "passwordencryptor"
+  ],
+  "type": "silverstripe-module",
+  "homepage": "https://github.com/Quadra-Digital/silverstripe-bcrypt-passwordencryptor",
+  "license": "BSD-3-Clause",
+  "authors": [
+  {
+      "name": "Leonardo Melo",
+      "email": "leonardo.melo@quadradigital.co.uk"
+  }
+  ],
+  "require": {
+      "silverstripe/framework": "^3.0"
+  },
+  "extra": {
+      "installer-name": "bcrypt-passwordencryptor"
+  }
+}
