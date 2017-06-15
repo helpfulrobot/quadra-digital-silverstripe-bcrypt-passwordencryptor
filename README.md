@@ -52,4 +52,5 @@ This module is built and open-sourced by [Quadra Digtial](https://www.quadradigi
 Leonardo Melo <leonardo.melo@quadradigital.co.uk>
 
 ### Administrative
-Ping Ho <ping.ho@quadradigital.co.uk>
+Peter Foster <peter.foster@quadradigital.co.uk>
+
