@@ -1,6 +1,7 @@
 <?php
 
-class PasswordEncryptor_bcrypt extends PasswordEncryptor {
+class PasswordEncryptor_bcrypt extends PasswordEncryptor
+{
 
 
     /**
@@ -19,13 +20,13 @@ class PasswordEncryptor_bcrypt extends PasswordEncryptor {
      */
     private static $encryption_cost = 15;
 
-    static public function config() {
-        error_log('Config::all ' . json_encode(Config::inst()->forClass(get_called_class())));
-        error_log('Config::class): ' . json_encode(get_called_class()));
+    public static function config()
+    {
         return Config::inst()->forClass(get_called_class());
     }
 
-    public static function set_encryption_cost($encryption_cost) {
+    public static function set_encryption_cost($encryption_cost)
+    {
         self::config()->encryption_cost = max(min(31, $encryption_cost), 4);
     }
 
@@ -33,7 +34,8 @@ class PasswordEncryptor_bcrypt extends PasswordEncryptor {
      * @deprecated 4.0 Use the "PasswordEncryptor_bcrypt.encryption_cost" config setting instead
      * @return String
      */
-    public static function get_encryption_cost() {
+    public static function get_encryption_cost()
+    {
         $cost = self::config()->encryption_cost;
         if (empty($cost)) {
             $cost = self::$encryption_cost;
@@ -53,14 +55,12 @@ class PasswordEncryptor_bcrypt extends PasswordEncryptor {
     public function encrypt($password, $salt = null, $member = null)
     {
 
-        error_log('PasswordEncryptor_bcrypt::encrypt');
 
         // password hash expects salt to be at least 22 characters long.
         if (empty($salt) || strlen($salt) < 22) {
             throw new PasswordEncryptor_EncryptionFailed('Could not encrypt password. Salt does not satisfy requirements: ' . $salt);
         }
 
-        error_log('config: '. json_encode(self::config()->encryption_cost));
 
         $options = array(
             'cost' => $this->get_encryption_cost(),
@@ -85,7 +85,8 @@ class PasswordEncryptor_bcrypt extends PasswordEncryptor {
      * with flawed algorithms - see {@link PasswordEncryptor_LegacyPHPHash} and
      * {@link PasswordEncryptor_Blowfish}
      */
-    public function check($hash, $password, $salt = null, $member = null) {
+    public function check($hash, $password, $salt = null, $member = null)
+    {
         return $hash === $this->encrypt($password, $salt, $member);
     }
 }
