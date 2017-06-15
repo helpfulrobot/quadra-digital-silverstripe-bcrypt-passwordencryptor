@@ -27,6 +27,12 @@ Security:
   password_encryption_algorithm: bcrypt
 ```
 
+This will enable the module and all newly created members will use bcrypt as their password hashing algorhythm.
+
+For existing members to benefit, their ```Member::$PasswordEncryption``` property will need to be manually changed in the database from (for example) 'blowfish' to 'bcrypt'. This would not be neccersary if the password encryption process made use of the *current* algorhythm, defined in config, instead of the *last used* algorhythm stored in the members DB record, as per [this issue](https://github.com/silverstripe/silverstripe-framework/issues/6770) against framework.
+
+They will then need to have their password reset either by an admin or using the 'password reset' process, using the 'change password' process will not work as when their current password is checked it will be hashed using the new 'bcrypt' algorhythm instead of the original (for example) 'blowfish' algorhythm, causing the check to fail.
+
 Optionally set a custom encryption cost for your application (default is 15, must be between 4 and 31):
 ```yml
 PasswordEncryptor_bcrypt:
